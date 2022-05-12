@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Show all "Infoboxes" in the area</title>
+  <meta charset="utf-8">
+  <style>
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      padding: 0;
+      margin: 0;
+      background: #333;
+    }
+
+    h1 {
+      padding: 0;
+      margin: 0;
+      font-size: 50%;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 id="h1">Infobox : infoboxs</h1>
+  <div id="myMap" style='width:100%;height:600px;'></div>
+
+
+  <!-- [ infobox Object ] https://msdn.microsoft.com/en-us/library/mt712658.aspx -->
+  <script
+    src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AsdLCrTLqpsErrpxm_PRHuL-ifYvskaI2Us5fZQar4JQcFM6T0RODldwB8aNtyd5'
+    async defer></script>
+  <script>
+    let infoboxs = []; //Put infobox in an array
+    let locations = []; //Put location in an array
+    let map;
+    //Maps Init
+    function GetMap() {
+      map = new Microsoft.Maps.Map('#myMap', {
+        center: new Microsoft.Maps.Location(35.696093164643386, 139.69713605519252),
+        zoom: 20
+      });
+
+      //Set:Infobox
+      locations[0] = map.getCenter();
+      const infobox0 = new Microsoft.Maps.Infobox(locations[0], {
+        title: 'アークアカデミー新宿日本語学校',
+        description: '〒160-0023 東京都新宿区西新宿７丁目１８−１６ 東信西新宿ビル',
+        showPointer: true,     //Pointer
+        showCloseButton: true, //CloseButton
+        //Event:Create
+        actions: [{
+          label: 'HP',
+          eventHandler: function () { //function
+            window.open().location.href = "https://www.arc-academy.net/#";
+          }
+        }, {
+          label: 'Introduction Video',
+          eventHandler: function () { //function
+            window.open().location.href = "https://www.youtube.com/watch?v=QC8EfRWLqpE";
+          }
+        }]
+      });
+      infoboxs.push(infobox0);
+
+      //Set:Infobox
+      locations[1] = new Microsoft.Maps.Location(35.73151462549368, 139.77587285601487);
+      const infobox1 = new Microsoft.Maps.Infobox(locations[1], {
+        title: '赤門会日本語学校 本校',
+        description: '〒116-0014 東京都荒川区東日暮里６丁目３９−１２',
+        showPointer: true,     //Pointer
+        showCloseButton: true, //CloseButton
+        //Event:Create
+        actions: [{
+          label: 'HP',
+          eventHandler: function () { //function
+            window.open().location.href = "https://www.akamonkai.ac.jp/";
+          }
+        }, {
+          label: 'Introduction Video',
+          eventHandler: function () { //function
+            window.open().location.href = "https://www.youtube.com/watch?v=wCmO7N48olI";
+          }
+        }]
+      });
+      infoboxs.push(infobox1);
+
+      //Set:Infobox
+      locations[2] = new Microsoft.Maps.Location(35.703676510218884, 139.7805528258056);
+      const infobox2 = new Microsoft.Maps.Infobox(locations[2], {
+        title: 'インターカルト日本語学校',
+        description: '〒110-0016 東京都台東区台東２丁目２０−９',
+        showPointer: true,     //Pointer
+        showCloseButton: true, //CloseButton
+        //Event:Create
+        actions: [{
+          label: 'HP',
+          eventHandler: function () { //function
+            window.open().location.href = "https://www.incul.com/";
+          }
+        }, {
+          label: 'Introduction Video',
+          eventHandler: function () { //function
+            window.open().location.href = "https://www.youtube.com/watch?v=z2Y9ShF4n18";
+          }
+        }]
+      });
+      infoboxs.push(infobox2);
+
+      //Set:Infobox
+      locations[3] = new Microsoft.Maps.Location(35.70112640370683, 139.7036279447611);
+      const infobox3 = new Microsoft.Maps.Infobox(locations[3], {
+        title: 'カイ日本語スクール',
+        description: '〒169-0072 東京都新宿区大久保１丁目１５−１８',
+        showPointer: true,     //Pointer
+        showCloseButton: true, //CloseButton
+        //Event:Create
+        actions: [{
+          label: 'HP',
+          eventHandler: function () { //function
+            window.open().location.href = "https://www.kaij.jp/";
+          }
+        }, {
+          label: 'Introduction Video',
+          eventHandler: function () { //function
+            window.open().location.href = "https://www.youtube.com/watch?v=a_7L0dtfW5Y";
+          }
+        }]
+      });
+      infoboxs.push(infobox3);
+
+      //Set:Infobox
+      locations[4] = new Microsoft.Maps.Location(35.677215887440404, 139.783132484359);
+      const infobox4 = new Microsoft.Maps.Infobox(locations[4], {
+        title: '東京ギャラクシー日本語学校',
+        description: '〒104-0033 東京都中央区新川１丁目１５−１３',
+        showPointer: true,     //Pointer
+        showCloseButton: true, //CloseButton
+        //Event:Create
+        actions: [{
+          label: 'HP',
+          eventHandler: function () { //function
+            window.open().location.href = "http://www.tokyogalaxy.ac.jp/";
+          }
+        }, {
+          label: 'Introduction Video',
+          eventHandler: function () { //function
+            window.open().location.href = "https://www.youtube.com/watch?v=FLhdee44xPE";
+          }
+        }]
+      });
+      infoboxs.push(infobox4);
+
+
+      //Add:Place an infobox on the map.
+      for (var i = 0; i < infoboxs.length; i++) {
+        infoboxs[i].setMap(map); //Add infobox to Map
+      }
+
+      //Change the display of the map.
+      map.setView({
+        bounds: Microsoft.Maps.LocationRect.fromLocations(locations), //fromLocations or fromShapes
+        padding: 100
+      });
+    }
+  </script>
+</body>
+
+</html>
